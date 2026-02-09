@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException,Response
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
@@ -15,6 +15,12 @@ app.add_middleware(
 @app.get("/")
 def health_check():
     return {"status": "ok"}
+
+
+
+@app.head("/")
+def head_check():
+    return Response(status_code=200)
 
 
 class TwoSumRequest(BaseModel):
